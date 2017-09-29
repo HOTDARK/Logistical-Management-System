@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.itcast.jk.domain">
+
+	<class name="User" table="USER_P">
+		<id name="id" column="USER_ID">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="userName" column="USER_NAME" />
+		<property name="password" column="PASSWORD" />
+		<property name="state" column="STATE" />
+
+		<property name="createBy" column="CREATE_BY" />
+		<property name="createDept" column="CREATE_DEPT" />
+		<property name="createTime" column="CREATE_TIME" />
+
+		<property name="updateBy" column="UPDATE_BY" />
+		<property name="updateTime" column="UPDATE_TIME" />
+
+		<!-- 多对一private Dept dept;//所属的部门,用户与部门属于多对一 -->
+		<many-to-one name="dept" class="Dept" column="DEPT_ID"></many-to-one>
+
+		<!-- private UserInfo userInfo;//用户与用户的扩展信息 -->
+		<one-to-one name="userInfo" class="Userinfo" cascade="all"></one-to-one>
+	</class>
+
+</hibernate-mapping>
